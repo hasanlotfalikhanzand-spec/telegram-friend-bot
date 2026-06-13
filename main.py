@@ -10,36 +10,35 @@ genai.configure(api_key=GEMINI_API_KEY)
 
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
-user_text = update.message.text
+    user_text = update.message.text
 
-```
-prompt = f"""
-تو یک دوست صمیمی فارسی‌زبان هستی.
-طبیعی، دوستانه و کوتاه جواب بده.
-اسم کاربر را نمی‌دانی.
-متن کاربر:
-{user_text}
-"""
+    prompt = f"""
+    تو یک دوست صمیمی فارسی‌زبان هستی.
+    طبیعی، دوستانه و کوتاه جواب بده.
+    اسم کاربر را نمی‌دانی.
+    متن کاربر:
+    {user_text}
+    """
 
-try:
-    response = model.generate_content(prompt)
-    await update.message.reply_text(response.text)
-except Exception:
-    await update.message.reply_text("الان نمی‌تونم جواب بدم، بعداً دوباره امتحان کن.")
-```
+    try:
+        response = model.generate_content(prompt)
+        await update.message.reply_text(response.text)
+    except Exception:
+        await update.message.reply_text("الان نمی‌تونم جواب بدم، بعداً دوباره امتحان کن.")
+
 
 def main():
-app = Application.builder().token(BOT_TOKEN).build()
+    app = Application.builder().token(BOT_TOKEN).build()
 
-```
-app.add_handler(
-    MessageHandler(filters.TEXT & ~filters.COMMAND, chat)
-)
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, chat)
+    )
 
-print("Bot Started...")
-app.run_polling()
-```
+    print("Bot Started...")
+    app.run_polling()
 
-if **name** == "**main**":
-main()
+
+if __name__ == "__main__":
+    main()
