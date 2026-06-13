@@ -1,16 +1,18 @@
 from telegram import Bot
 import asyncio
 import random
+import os
 
-TOKEN = "8706051503:AAH_KAsxWpQ477arAiK_ubBh9gdcxpMcLAM"
-CHAT_ID = "7835942427"
+TOKEN = os.environ["BOT_TOKEN"]
+CHAT_ID = os.environ["CHAT_ID"]
 
 messages = [
-    "سلام، الان مشغول چه کاری هستی؟ 😊",
-    "امروزت چطور گذشت؟",
-    "یه اتفاق جالب امروزت رو برام تعریف کن.",
-    "حالت الان چطوره؟",
-    "امیدوارم روز خوبی داشته باشی 🌷"
+    "سلام 😊 حالت چطوره؟",
+    "امروز چه خبر بوده؟",
+    "الان داری چیکار می‌کنی؟",
+    "یه لیوان آب خوردی؟ 😄",
+    "امیدوارم روز خوبی داشته باشی 🌷",
+    "یه اتفاق جالب امروزت رو تعریف کن.",
 ]
 
 async def send_message():
