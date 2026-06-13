@@ -1,25 +1,26 @@
-from telegram import Bot
-import asyncio
-import random
+from telegram import Update
+from telegram.ext import (
+    Application,
+    MessageHandler,
+    ContextTypes,
+    filters,
+)
 import os
 
-TOKEN = os.environ["BOT_TOKEN"]
-CHAT_ID = os.environ["CHAT_ID"]
+TOKEN = os.environ["8706051503:AAH_KAsxWpQ477arAiK_ubBh9gdcxpMcLAM"]
 
-messages = [
-    "سلام 😊 حالت چطوره؟",
-    "امروز چه خبر بوده؟",
-    "الان داری چیکار می‌کنی؟",
-    "یه لیوان آب خوردی؟ 😄",
-    "امیدوارم روز خوبی داشته باشی 🌷",
-    "یه اتفاق جالب امروزت رو تعریف کن.",
-]
+async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_text = update.message.text
 
-async def send_message():
-    bot = Bot(token=TOKEN)
-    await bot.send_message(
-        chat_id=CHAT_ID,
-        text=random.choice(messages)
+    await update.message.reply_text(
+        f"پیامت رو گرفتم 😊\n\nتو گفتی:\n{user_text}"
     )
 
-asyncio.run(send_message())
+app = Application.builder().token(TOKEN).build()
+
+app.add_handler(
+    MessageHandler(filters.TEXT & ~filters.COMMAND, reply)
+)
+
+print("Bot is running...")
+app.run_polling()
