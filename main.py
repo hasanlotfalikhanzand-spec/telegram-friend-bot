@@ -7,7 +7,7 @@ from telegram.ext import (
 )
 import os
 
-TOKEN = os.environ["8706051503:AAH_KAsxWpQ477arAiK_ubBh9gdcxpMcLAM"]
+TOKEN = os.environ["BOT_TOKEN"]
 
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text
